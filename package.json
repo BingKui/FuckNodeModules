@@ -1,0 +1,27 @@
+{
+  "name": "fucknodemodules",
+  "version": "0.0.1",
+  "description": " 'node_modules' Folder Manage Tools.",
+  "main": "index.js",
+  "bin": {
+    "fk": "./bin/cli"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": [
+    "CLI",
+    "node_modules",
+    "Node"
+  ],
+  "author": "康兵奎",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^6.2.0",
+    "console-grid": "^1.0.16",
+    "fs-extra": "^9.0.1",
+    "inquirer": "^7.3.3",
+    "ora": "^5.1.0",
+    "os-locale": "^5.0.0"
+  }
+}

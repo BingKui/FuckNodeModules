@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+// 引入命令行工具
+const { program } = require('commander');
+const pkg = require('../package.json');
+const { getLocalTip }  = require('../common/utils');
+
+const TIP_INFO = getLocalTip().helpInfo;
+
+const findCli = require('../lib/find.js');
+const delCli = require('../lib/del.js');
+
+program.version(pkg.version, '-v, --version', TIP_INFO.version)
+  .option('-d, --del', TIP_INFO.del)
+  .option('-f, --find', TIP_INFO.find)
+  .on('--help', function() {})
+  .parse(process.argv);
+
+if (program.find || program.f) {
+  findCli(process.argv);
+}
+
+if (program.del || program.d) {
+  delCli(process.argv);
+}
