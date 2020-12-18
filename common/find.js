@@ -1,6 +1,7 @@
 const fs = require('fs');
 const fsExtra = require('fs-extra');
 const os = require('os');
+const getSize = require('get-folder-size');
 
 const white_list = ['Applications', 'Applications (Parallels)', 'Desktop', 'Movies', 'Music', 'Documents', 'Downloads', 'Pictures', 'Library', 'Public'];
 
@@ -21,7 +22,12 @@ const getFolderListByName = (name, basePath) => {
                 }
                 if (itemState.isDirectory()) {
                     if (item === name) {
-                        result.push(`${basePath}/${item}`);
+                        const folderSize = await getFolderSize(`${basePath}/${item}`);
+                        result.push({
+                            path: `${basePath}/${item}`,
+                            size: folderSize.size,
+                            sizeText: folderSize.sizeText,
+                        });
                     } else {
                         const arr = await getFolderListByName(name, `${basePath}/${item}`);
                         result = [...result, ...arr];
@@ -29,6 +35,23 @@ const getFolderListByName = (name, basePath) => {
                 }
             }
             resolve(result);
+        });
+    });
+};
+
+const getFolderSize = (folder) => {
+    return new Promise((resolve, reject) => {
+        getSize(folder, (err, size) => {
+            if (err) {
+                resolve({
+                    size: 0,
+                    sizeText: 0 + ' MB',
+                });
+            }
+            resolve({
+                size,
+                sizeText: (size / 1024 / 1024).toFixed(2) + ' MB',
+            });
         });
     });
 };

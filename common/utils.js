@@ -22,12 +22,14 @@ const getLocalTip = () => {
 const getListArray = (list) => {
     const result = [];
     list.forEach(item => {
-        const arr = item.split('/');
+        const arr = item.path.split('/');
         const name = arr[arr.length - 2];
         result.push({
             name,
-            value: item,
+            value: item.path,
             short: name,
+            size: item.size,
+            sizeText: item.sizeText,
         });
     });
     return result;

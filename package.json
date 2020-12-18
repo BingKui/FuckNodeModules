@@ -20,6 +20,7 @@
     "commander": "^6.2.0",
     "console-grid": "^1.0.16",
     "fs-extra": "^9.0.1",
+    "get-folder-size": "^2.0.1",
     "inquirer": "^7.3.3",
     "ora": "^5.1.0",
     "os-locale": "^5.0.0"

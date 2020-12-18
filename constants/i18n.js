@@ -4,6 +4,7 @@ const ZH_TIP = {
         del: '查询并选择删除',
         find: '查询',
         project: '项目名',
+        projectSize: '大小',
         folder: '地址',
     },
     question: {
@@ -18,6 +19,7 @@ const EN_TIP = {
         del: 'Find And Select To Delete',
         find: 'Find',
         project: 'Project Name',
+        projectSize: 'Size',
         folder: 'Path',
     },
     question: {
