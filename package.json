@@ -1,6 +1,6 @@
 {
   "name": "fuck-node-modules",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": " 'node_modules' Folder Manage Tools.",
   "main": "index.js",
   "bin": {
