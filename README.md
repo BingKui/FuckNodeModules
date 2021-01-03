@@ -30,9 +30,11 @@
 > fk --help
 Usage: fk [options]
 
+一个用于查找/删除 node_modules 文件夹的命令行工具。
+
 Options:
   -v, --version  查看版本
   -d, --del      查询并选择删除
   -f, --find     查询
-  -h, --help     display help for command
+  -h, --help     查看帮助
 ```
