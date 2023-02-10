@@ -3,7 +3,7 @@ const fsExtra = require('fs-extra');
 const os = require('os');
 const getSize = require('get-folder-size');
 
-const white_list = ['Applications', 'Applications (Parallels)', 'Desktop', 'Movies', 'Music', 'Documents', 'Downloads', 'Pictures', 'Library', 'Public'];
+const white_list = ['Applications', 'Applications (Parallels)', 'Desktop', 'Movies', 'Music', 'Documents', 'Downloads', 'Pictures', 'Library', 'Public', 'App.framework'];
 
 /**
  * 根据名称查询到所有的目录地址
@@ -16,10 +16,17 @@ const getFolderListByName = (name, basePath) => {
         fs.readdir(basePath || os.homedir(), async (err, list) => {
             for (let i = 0; i < list.length; i++) {
                 const item = list[i];
-                const itemState = fs.statSync(`${basePath}/${item}`);
+                if (item.indexOf('.') > -1) continue;
+                let itemState;
+                try {
+                    itemState = fs.statSync(`${basePath}/${item}`);
+                } catch (error) {
+                    continue;
+                }
                 if (white_list.indexOf(item) > -1 || item.indexOf('.') === 0) {
                     continue;
                 }
+                if (item.indexOf('.app') > -1) continue;
                 if (itemState.isDirectory()) {
                     if (item === name) {
                         const folderSize = await getFolderSize(`${basePath}/${item}`);
